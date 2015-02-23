@@ -71,7 +71,7 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         RedditData data = (RedditData) parent.getAdapter().getItem(position);
         if (data.isSelf) {
             SelfActivity.startSelfActivity(this, data);
-        } else if (data.url.endsWith(".jpg") || data.url.endsWith(".png")) {
+        } else if (data.isImage()) {
             ImageActivity.startImageActivity(this, data);
         } else {
             WebActivity.startWebActivity(this, data);

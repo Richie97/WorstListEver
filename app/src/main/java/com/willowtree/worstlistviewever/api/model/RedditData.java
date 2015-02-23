@@ -30,6 +30,11 @@ public class RedditData implements Parcelable {
     public boolean isSelf;
     @SerializedName("selftext_html")
     public String selfTextHtml;
+    
+    public boolean isImage(){
+        return url.endsWith(".jpg") || url.endsWith(".png");
+        
+    }
 
 
     @Override
