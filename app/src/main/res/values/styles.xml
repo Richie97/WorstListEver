@@ -1,0 +1,20 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/header</item>
+        <item name="colorPrimaryDark">@color/header_dark</item>
+        <item name="colorAccent">@color/reddit_orange</item>
+        <item name="colorControlHighlight">@color/orangered</item>
+        <item name="actionBarStyle">@style/RedditActionBar</item>
+        <item name="android:windowBackground">@color/light_bg</item>
+    </style>
+    <style name="RedditActionBar" parent="@style/Widget.AppCompat.ActionBar.Solid">
+        <item name="titleTextStyle">@style/RedditTitleText</item>
+    </style>
+
+    <style name="RedditTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/ui_text</item>
+    </style>
+</resources>

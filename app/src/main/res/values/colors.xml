@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="reddit_orange">#ff5700</color>
+    <color name="orangered">#ff4500</color>
+    <color name="upvote">#ff8b60</color>
+    <color name="downvote">#9494ff</color>
+    <color name="header">#cee3f8</color>
+    <color name="light_bg">#eff7ff</color>
+    <color name="lighter_bg">#fff8f9ff</color>
+    <color name="ui_text">#336699</color>
+    <color name="header_dark">#ff93a2b2</color>
+</resources>
