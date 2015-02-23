@@ -10,12 +10,14 @@ import oak.util.OakAsyncLoader;
  * Created by ericrichardson on 2/18/15.
  */
 public class SubredditLoader extends OakAsyncLoader<RedditData> {
-    public SubredditLoader(Context context) {
+    private String subreddit;
+    public SubredditLoader(Context context, String subreddit) {
         super(context);
+        this.subreddit = subreddit;
     }
 
     @Override
     public RedditData loadInBackground() {
-        return Reddit.getService().getSubreddit("android");
+        return Reddit.getService().getSubreddit(subreddit);
     }
 }

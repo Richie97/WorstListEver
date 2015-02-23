@@ -3,7 +3,12 @@ package com.willowtree.worstlistviewever;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.view.MenuCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -16,6 +21,7 @@ import com.willowtree.worstlistviewever.api.model.RedditData;
 public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<RedditData>, AdapterView.OnItemClickListener {
     private ListView mListView;
     private ProgressBar mProgress;
+    private int loaderId = 0;
 
 
     @Override
@@ -25,13 +31,20 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         mListView = (ListView) findViewById(R.id.list);
         mListView.setOnItemClickListener(this);
         mProgress = (ProgressBar) findViewById(R.id.progress);
-        showProgress(true);
-        getSupportLoaderManager().initLoader(0, null, this);
+        Bundle args = getLoaderArguments("android");
+        getSupportLoaderManager().initLoader(loaderId, args, this);
+    }
+    
+    private Bundle getLoaderArguments(String subreddit){
+        Bundle args = new Bundle();
+        args.putString("subreddit", subreddit);
+        return args;
     }
 
     @Override
     public Loader<RedditData> onCreateLoader(int id, Bundle args) {
-        return new SubredditLoader(this);
+        showProgress(true);
+        return new SubredditLoader(this, args.getString("subreddit"));
     }
 
     @Override
@@ -60,5 +73,25 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         } else {
             WebActivity.startWebActivity(this, data);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                loaderId++;
+                getSupportLoaderManager().initLoader(loaderId, getLoaderArguments(s), MainActivity.this);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
 }
