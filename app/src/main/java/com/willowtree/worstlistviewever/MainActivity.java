@@ -7,6 +7,7 @@ import android.support.v4.view.MenuCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.SearchView;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -31,20 +32,22 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         mListView = (ListView) findViewById(R.id.list);
         mListView.setOnItemClickListener(this);
         mProgress = (ProgressBar) findViewById(R.id.progress);
-        Bundle args = getLoaderArguments("android");
+        Bundle args = getLoaderArguments(SubredditLoader.DEFAULT_SUBREDDIT);
         getSupportLoaderManager().initLoader(loaderId, args, this);
     }
     
     private Bundle getLoaderArguments(String subreddit){
         Bundle args = new Bundle();
-        args.putString("subreddit", subreddit);
+        args.putString(SubredditLoader.SUBREDDIT, subreddit);
         return args;
     }
 
     @Override
     public Loader<RedditData> onCreateLoader(int id, Bundle args) {
         showProgress(true);
-        return new SubredditLoader(this, args.getString("subreddit"));
+        String subreddit = args.getString(SubredditLoader.SUBREDDIT);
+        getSupportActionBar().setTitle(subreddit);
+        return new SubredditLoader(this, subreddit);
     }
 
     @Override
@@ -78,12 +81,15 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(menu.findItem(R.id.action_search));
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                loaderId++;
-                getSupportLoaderManager().initLoader(loaderId, getLoaderArguments(s), MainActivity.this);
+                if(!TextUtils.isEmpty(s)) {
+                    loaderId++;
+                    getSupportLoaderManager().initLoader(loaderId, getLoaderArguments(s), MainActivity.this);
+                }
+                supportInvalidateOptionsMenu();
                 return true;
             }
 
