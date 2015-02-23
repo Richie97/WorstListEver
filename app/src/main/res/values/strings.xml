@@ -6,4 +6,9 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_web">WebActivity</string>
     <string name="title_activity_image">ImageActivity</string>
+    
+    <string name="roboto_bold">fonts/RobotoCondensed-Bold.ttf</string>
+    <string name="roboto_light_italic">fonts/RobotoCondensed-LightItalic.ttf</string>
+    <string name="roboto_italic">fonts/RobotoCondensed-Italic.ttf</string>
+    <string name="roboto_regular">fonts/RobotoCondensed-Regular.ttf</string>
 </resources>

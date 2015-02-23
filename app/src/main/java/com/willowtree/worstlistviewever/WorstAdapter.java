@@ -63,10 +63,10 @@ public class WorstAdapter  extends BaseAdapter {
         if(getItemViewType(position) == 0) {
             view = LayoutInflater.from(mContext).inflate(R.layout.view_list_item, parent, false);
             RedditData data = getItem(position);
-            Typeface robotoCondensedBold = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
-            Typeface robotoCondensedRegular = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
-            Typeface robotoCondensedItalic = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-Italic.ttf");
-            Typeface robotoCondensedLightItalic = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-LightItalic.ttf");
+            Typeface robotoCondensedBold = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_bold));
+            Typeface robotoCondensedRegular = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_regular));
+            Typeface robotoCondensedItalic = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_italic));
+            Typeface robotoCondensedLightItalic = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_light_italic));
             TextView title, author, subreddit, ups, downs, comments;
             title = (TextView) view.findViewById(R.id.title);
             title.setText(Html.fromHtml(data.title));
@@ -100,10 +100,10 @@ public class WorstAdapter  extends BaseAdapter {
         } else {
             view = LayoutInflater.from(mContext).inflate(R.layout.view_list_item_image, parent, false);
             RedditData data = getItem(position);
-            Typeface robotoCondensedBold = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-Bold.ttf");
-            Typeface robotoCondensedRegular = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-Regular.ttf");
-            Typeface robotoCondensedItalic = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-Italic.ttf");
-            Typeface robotoCondensedLightItalic = Typeface.createFromAsset(mContext.getAssets(), "fonts/RobotoCondensed-LightItalic.ttf");
+            Typeface robotoCondensedBold = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_bold));
+            Typeface robotoCondensedRegular = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_regular));
+            Typeface robotoCondensedItalic = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_italic));
+            Typeface robotoCondensedLightItalic = Typeface.createFromAsset(mContext.getAssets(), mContext.getString(R.string.roboto_light_italic));
             TextView title, author, subreddit, ups, downs, comments;
             title = (TextView) view.findViewById(R.id.title);
             title.setText(Html.fromHtml(data.title));
