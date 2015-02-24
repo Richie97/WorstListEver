@@ -40,7 +40,11 @@ public class WorstAdapter  extends BaseAdapter {
 
     @Override
     public RedditData getItem(int position) {
-        //TODO Make this way worse
+        for(int i = 0; i < mData.size(); i++){
+            if(position == i){
+                return mData.get(i).data;
+            }
+        }
         return mData.get(position).data;
     }
 
