@@ -5,6 +5,7 @@ import com.willowtree.worstlistviewever.api.model.RedditData;
 
 import retrofit.http.GET;
 import retrofit.http.Path;
+import retrofit.http.Query;
 
 /**
  * Created by ericrichardson on 2/18/15.
