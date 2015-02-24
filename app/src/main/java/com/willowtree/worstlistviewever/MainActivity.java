@@ -1,6 +1,7 @@
 package com.willowtree.worstlistviewever;
 
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v4.view.MenuCompat;
@@ -14,12 +15,13 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.willowtree.worstlistviewever.api.SubredditLoader;
 import com.willowtree.worstlistviewever.api.model.RedditData;
 
 
-public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<RedditData>, AdapterView.OnItemClickListener {
+public class MainActivity extends ActionBarActivity implements LoaderManager.LoaderCallbacks<RedditData>, AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
     private ListView mListView;
     private ProgressBar mProgress;
     private int loaderId = 0;
@@ -28,9 +30,11 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PreferenceManager.getDefaultSharedPreferences(this).edit().putLong("currentTime", System.currentTimeMillis()).apply();
         setContentView(R.layout.activity_main);
         mListView = (ListView) findViewById(R.id.list);
         mListView.setOnItemClickListener(this);
+        mListView.setOnItemLongClickListener(this);
         mProgress = (ProgressBar) findViewById(R.id.progress);
         Bundle args = getLoaderArguments(SubredditLoader.DEFAULT_SUBREDDIT);
         getSupportLoaderManager().initLoader(loaderId, args, this);
@@ -77,7 +81,14 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
             WebActivity.startWebActivity(this, data);
         }
     }
-
+    
+    @Override
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        int pos = PreferenceManager.getDefaultSharedPreferences(this).getInt("pos", 0);
+        Toast.makeText(this, ((WorstAdapter)parent.getAdapter()).getItem(pos).title, Toast.LENGTH_SHORT).show();
+        return true;
+    }
+    
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -100,4 +111,6 @@ public class MainActivity extends ActionBarActivity implements LoaderManager.Loa
         });
         return super.onCreateOptionsMenu(menu);
     }
+
+
 }

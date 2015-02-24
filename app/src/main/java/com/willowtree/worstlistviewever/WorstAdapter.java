@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.willowtree.worstlistviewever.api.model.RedditData;
@@ -39,6 +40,7 @@ public class WorstAdapter  extends BaseAdapter {
 
     @Override
     public RedditData getItem(int position) {
+        //TODO Make this way worse
         return mData.get(position).data;
     }
 
@@ -81,7 +83,6 @@ public class WorstAdapter  extends BaseAdapter {
             Spannable subSpan = new SpannableString(Html.fromHtml(data.subreddit));
             subSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.orangered)), 0, subSpan.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             subreddit.setText(subSpan);
-            PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("item", new Gson().toJson(data)).commit();
             ups = (TextView) view.findViewById(R.id.ups);
             ups.setTypeface(robotoCondensedItalic);
             Spannable upvoteSpan = new SpannableString(Integer.toString(data.ups));
@@ -89,6 +90,7 @@ public class WorstAdapter  extends BaseAdapter {
             ups.setText(upvoteSpan);
             downs = (TextView) view.findViewById(R.id.downs);
             downs.setTypeface(robotoCondensedItalic);
+            PreferenceManager.getDefaultSharedPreferences(mContext).edit().putInt("pos", position).commit();
             Spannable downvoteSpan = new SpannableString(Integer.toString(data.downs));
             downvoteSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.downvote)), 0, downvoteSpan.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             downs.setText(downvoteSpan);
@@ -123,7 +125,7 @@ public class WorstAdapter  extends BaseAdapter {
             Spannable upvoteSpan = new SpannableString(Integer.toString(data.ups));
             upvoteSpan.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(R.color.upvote)), 0, upvoteSpan.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             ups.setText(upvoteSpan);
-            PreferenceManager.getDefaultSharedPreferences(mContext).edit().putString("item", new Gson().toJson(data)).commit();
+            PreferenceManager.getDefaultSharedPreferences(mContext).edit().putInt("pos", position).commit();
             downs = (TextView) view.findViewById(R.id.downs);
             downs.setTypeface(robotoCondensedItalic);
             Spannable downvoteSpan = new SpannableString(Integer.toString(data.downs));

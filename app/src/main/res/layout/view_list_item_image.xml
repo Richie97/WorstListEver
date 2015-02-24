@@ -16,7 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/light_bg"
+        android:background="@android:color/white"
         android:padding="@dimen/default_padding">
 
         <WebView
@@ -32,7 +32,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_bg"
+            android:background="@android:color/white"
             android:orientation="vertical">
 
             <TextView
@@ -43,7 +43,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/light_bg">
+                android:background="@android:color/white">
 
                 <TextView
                     android:id="@+id/author"
@@ -60,12 +60,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_bg">
+                android:background="@android:color/white">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/light_bg"
+                    android:background="@android:color/white"
                     android:gravity="center_horizontal"
                     android:layout_weight="1">
 
@@ -74,7 +74,7 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:gravity="right"
-                        android:src="@drawable/ic_expand_more"
+                        android:src="@drawable/ic_expand_less"
                         android:layout_weight="1"/>
 
                     <TextView
@@ -89,7 +89,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/light_bg"
+                    android:background="@android:color/white"
                     android:gravity="center_horizontal"
                     android:layout_weight="1">
 
@@ -112,7 +112,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/light_bg"
+                    android:background="@android:color/white"
                     android:gravity="center_horizontal"
                     android:layout_weight="1">
 
