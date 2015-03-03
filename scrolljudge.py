@@ -1,3 +1,8 @@
+# usage: monkeyrunner scrolljudge.py
+
+# adjust the variables below depending on the app under test and the
+# environment.
+
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
 import os
