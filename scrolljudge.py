@@ -1,7 +1,4 @@
-# usage: monkeyrunner scrolljudge.py
-
-# adjust the variables below depending on the app under test and the
-# environment.
+# This should be executed from gradle by calling 'gradle bench'.
 
 from com.android.monkeyrunner import MonkeyRunner, MonkeyDevice
 
@@ -11,12 +8,16 @@ import sys
 import subprocess
 
 os.chdir(os.path.dirname(os.path.realpath(__file__)))
+python_path = 'python'
+if 'PYTHON_HOME' in os.environ:
+    python_path = os.environ['PYTHON_HOME']
 
-python_path = 'python2'
 android_sdk_path = os.environ['ANDROID_HOME']
-app_id = 'com.willowtree.worstlistviewever'
+app_id = os.environ['APP_ID']
 app_path = 'app/build/outputs/apk/app-debug.apk'
 systrace_output = "app/build/outputs/systrace.html"
+scroll_count = int(os.environ['SCROLL_COUNT'])
+systrace_time = int(os.environ['SYSTRACE_TIME'])
 
 print "waiting for adb"
 device = MonkeyRunner.waitForConnection()
@@ -35,7 +36,7 @@ device.startActivity(component=app_id + '/' + app_id + '.MainActivity')
 
 print "starting systrace"
 systrace = subprocess.Popen(
-    python_path + ' ' + android_sdk_path + '/platform-tools/systrace/systrace.py --time 5 -o ' + systrace_output + ' view',
+    python_path + ' ' + android_sdk_path + '/platform-tools/systrace/systrace.py --time ' + str(systrace_time) + ' -o ' + systrace_output + ' view',
     shell=True,
     cwd=os.getcwd(),
     stderr=subprocess.STDOUT)
@@ -46,8 +47,8 @@ MonkeyRunner.sleep(1)
 width = int(device.getProperty('display.width'))
 height = int(device.getProperty('display.height'))
 
-for i in range(0, 8):
-    device.drag((width / 2, height - 100), (width / 2, 100), 0.8)
+for i in range(0, scroll_count):
+    device.drag((width / 2, height - 100), (width / 2, 100), 0.6)
 
 print "waiting for systrace"
 if systrace.wait() != 0:
@@ -55,7 +56,7 @@ if systrace.wait() != 0:
     device.removePackage(app_id)
     sys.exit(1)
 
-# We need the pid of the app to filter the systrace result before uninstalling 
+# We need the pid of the app to filter the systrace result before uninstalling
 # it
 pid = int(device.shell('pgrep ' + app_id))
 print "pid: " + str(pid)
