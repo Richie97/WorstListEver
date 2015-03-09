@@ -4,7 +4,7 @@ You were up all night working on your game-changing reddit client. You cranked i
 
 # Getting started
 
-You just have to fork this repo to get started. The project is built with gradle and should import cleanly into Android Studio. When you are finished, create a pull request with your changes.
+You just have to clone this repo to get started. The project is built with gradle and should import cleanly into Android Studio. When you are finished, get your project back to us. TODO how?
 
 # Testing
 
