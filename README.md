@@ -22,5 +22,5 @@ TODO
 
 # Resources
 
-http://developer.android.com/training/improving-layouts/smooth-scrolling.html
-http://www.curious-creature.com/docs/android-performance-case-study-1.html
+- http://developer.android.com/training/improving-layouts/smooth-scrolling.html
+- http://www.curious-creature.com/docs/android-performance-case-study-1.html
