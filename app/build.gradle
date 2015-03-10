@@ -23,10 +23,40 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:21.0.3'
     compile 'com.willowtreeapps:oak-library:1.3.7'
-    compile 'com.google.code.gson:gson:2.2.4'
+    compile 'com.google.code.gson:gson:2.3'
     compile 'com.squareup.picasso:picasso:2.4.0'
     compile 'com.squareup.okhttp:okhttp:2.2.0'
     compile 'com.squareup.retrofit:retrofit:1.9.0'
     compile 'com.android.support:cardview-v7:21.0.3'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.2.0'
+}
+
+def sdkDir = {
+    Properties properties = new Properties()
+    File localProps = project.rootProject.file('local.properties')
+    def dir = null
+    if (localProps.exists()) {
+        properties.load(localProps.newDataInputStream())
+        dir = properties.getProperty('sdk.dir')
+    } else {
+        dir = System.getenv('ANDROID_HOME')
+    }
+    if (!dir) {
+        throw new ProjectConfigurationException("Cannot find android sdk. Make sure sdk.dir is defined in local.properties or the environment variable ANDROID_HOME is set.", null)
+    }
+    return dir
+}()
+
+task bench(type: Exec, dependsOn: 'assembleDebug') {
+    workingDir project.rootDir
+    commandLine "${sdkDir}/tools/monkeyrunner"
+    args = ['scrolljudge.py']
+    environment['ANDROID_HOME'] = sdkDir
+    environment['APP_ID'] = android.defaultConfig.applicationId
+    // You may adjust these values for your device. For the best results, it should scroll through
+    // the entire list.
+    environment['SCROLL_COUNT'] = 30 // Number of times for monkeyrunner to scroll
+    environment['SYSTRACE_TIME'] = 20 // Number of seconds to run systrace
+    // Uncomment this if your python 2 path is non-default
+    // environment['PYTHON_HOME'] = '/usr/bin/python2'
 }
