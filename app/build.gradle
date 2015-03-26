@@ -58,5 +58,5 @@ task bench(type: Exec, dependsOn: 'assembleDebug') {
     environment['SCROLL_COUNT'] = 30 // Number of times for monkeyrunner to scroll
     environment['SYSTRACE_TIME'] = 20 // Number of seconds to run systrace
     // Uncomment this if your python 2 path is non-default
-    // environment['PYTHON_HOME'] = '/usr/bin/python2'
+    //environment['PYTHON_HOME'] = '/usr/bin/python2'
 }

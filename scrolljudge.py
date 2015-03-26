@@ -97,7 +97,11 @@ deltas = []
 last_traversal = 0
 for line in trace_lines:
     if 'performTraversals' in line:
-        traversal = float(line.split(' ')[3].strip(':'))
+        traversal = float(line.split()[3].strip(':'))
+        # older format is missing a column
+        if traversal == 0:
+            traversal = float(line.split()[2].strip(':'))
+
         delta = traversal - last_traversal
         if last_traversal != 0:
             deltas.append(delta)
