@@ -58,7 +58,11 @@ if systrace.wait() != 0:
 
 # We need the pid of the app to filter the systrace result before uninstalling
 # it
-pid = int(device.shell('pgrep ' + app_id))
+pid = 0
+for line in device.shell('ps').split('\n'):
+    if app_id in line:
+        pid = int(line.split()[1])
+        break
 print "pid: " + str(pid)
 
 print "deleting apk"

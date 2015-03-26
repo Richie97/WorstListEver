@@ -1,6 +1,7 @@
 package com.willowtree.worstlistviewever;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.Spannable;
