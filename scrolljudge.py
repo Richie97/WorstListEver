@@ -109,5 +109,6 @@ for line in trace_lines:
 
 # get the delta average for our magic number!
 average = sum(deltas) / float(len(deltas))
-print "your score is: " + str(average)
+score = 1 / average
+print "your score is: " + str(score)
 
