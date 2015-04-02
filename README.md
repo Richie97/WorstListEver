@@ -4,7 +4,7 @@ You were up all night working on your game-changing reddit client. You cranked i
 
 # Getting started
 
-You just have to clone this repo to get started. The project is built with gradle and should import cleanly into Android Studio. When you are finished, get your project back to us. TODO how?
+You just have to clone this repo to get started. The project is built with gradle and should import cleanly into Android Studio. When you are finished, email a compiled .apk to bamg@willowtreeapps.com along with an archive of your source code.
 
 # Testing
 
@@ -14,11 +14,11 @@ Note that systrace may not be enabled on all devices or may require root to do s
 
 # Judging
 
-We will use the same test script that is in this repository to check your submission. If it performs well, we will also manually verify that it still looks the same and you aren't do anything tricky (Under no circumstances are you to put all the items in a ScrollView). TODO figure out what kinds of scores we are seeing on our "official test device"
+We will use the same test script that is in this repository to check your submission. If it performs well, we will also manually verify that it still looks the same and you aren't do anything tricky (under no circumstances are you to put all the items in a ScrollView). If your score appears to be prize-eligible, we will use an average of a number of runs as your final score.
 
 # Prizes
 
-TODO
+The top three scores for the day will win an Android Series 5 blind box figure!  Along with that, everyone who scores > 37 (verified by our team) will get an awesome WillowTree sticker.  The best we've been able to get (on our reference device, a Nexus 4) is ~48, so try to beat that!
 
 # Resources
 
