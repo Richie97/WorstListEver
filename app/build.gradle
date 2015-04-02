@@ -21,7 +21,7 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:21.0.3'
+    compile 'com.android.support:appcompat-v7:22.0.0'
     compile 'com.willowtreeapps:oak-library:1.3.7'
     compile 'com.google.code.gson:gson:2.3'
     compile 'com.squareup.picasso:picasso:2.4.0'
@@ -58,5 +58,5 @@ task bench(type: Exec, dependsOn: 'assembleDebug') {
     environment['SCROLL_COUNT'] = 30 // Number of times for monkeyrunner to scroll
     environment['SYSTRACE_TIME'] = 20 // Number of seconds to run systrace
     // Uncomment this if your python 2 path is non-default
-    // environment['PYTHON_HOME'] = '/usr/bin/python2'
+    //environment['PYTHON_HOME'] = '/usr/bin/python2'
 }

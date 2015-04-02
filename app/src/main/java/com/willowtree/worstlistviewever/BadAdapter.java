@@ -1,6 +1,8 @@
 package com.willowtree.worstlistviewever;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -14,11 +16,11 @@ public abstract class BadAdapter extends BaseAdapter{
     public Context getContext(){
         return mContext;
     }
-    
+
     public BadAdapter(Context context){
         this.mContext = context;
     }
-            
+
     @Override
     public abstract int getCount();
 

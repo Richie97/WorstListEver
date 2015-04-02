@@ -58,7 +58,11 @@ if systrace.wait() != 0:
 
 # We need the pid of the app to filter the systrace result before uninstalling
 # it
-pid = int(device.shell('pgrep ' + app_id))
+pid = 0
+for line in device.shell('ps').split('\n'):
+    if app_id in line:
+        pid = int(line.split()[1])
+        break
 print "pid: " + str(pid)
 
 print "deleting apk"
@@ -93,7 +97,11 @@ deltas = []
 last_traversal = 0
 for line in trace_lines:
     if 'performTraversals' in line:
-        traversal = float(line.split(' ')[3].strip(':'))
+        traversal = float(line.split()[3].strip(':'))
+        # older format is missing a column
+        if traversal == 0:
+            traversal = float(line.split()[2].strip(':'))
+
         delta = traversal - last_traversal
         if last_traversal != 0:
             deltas.append(delta)
@@ -101,5 +109,6 @@ for line in trace_lines:
 
 # get the delta average for our magic number!
 average = sum(deltas) / float(len(deltas))
-print "your score is: " + str(average)
+score = 1 / average
+print "your score is: " + str(score)
 
