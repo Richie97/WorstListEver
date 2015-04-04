@@ -11,7 +11,7 @@ import com.willowtree.worstlistviewever.api.model.RedditData;
  * Created by ericrichardson on 2/24/15.
  */
 public abstract class WorseAdapter extends BadAdapter {
-    
+
     public WorseAdapter(Context context){
         super(context);
     }
