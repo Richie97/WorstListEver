@@ -14,6 +14,8 @@ In order to test how well you are doing, a script is provided that uses monkeyru
 
 Note that systrace may not be enabled on all devices or may require root to do so. You can always use an emulator if you can't get your physical device to work.
 
+This script may or may not work on Lollipop, but it definitely works on the Nexus 4 we're using to test.
+
 # Submission
 
 Email a compiled .apk and an archive of your source code to bamg@willowtreeapps.com when you feel confident enough!  Then come by the WillowTree booth and we'll verify your score.
